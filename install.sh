@@ -11,16 +11,6 @@ path=$(pwd)
 user=$(whoami)
 
 clear
-echo ""
-echo ""
-echo " █████╗ ███████╗ ██████╗ ███╗   ██╗  ██████╗  ██████╗ ████████╗███████╗██╗██╗     ███████╗███████╗" 
-echo "██╔══██╗██╔════╝██╔═══██╗████╗  ██║  ██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝██║██║     ██╔════╝██╔════╝"
-echo "███████║█████╗  ██║   ██║██╔██╗ ██║  ██║  ██║██║   ██║   ██║   █████╗  ██║██║     █████╗  ███████╗"
-echo "██╔══██║██╔══╝  ██║   ██║██║╚██╗██║  ██║  ██║██║   ██║   ██║   ██╔══╝  ██║██║     ██╔══╝  ╚════██║"
-echo "██║  ██║███████╗╚██████╔╝██║ ╚████║  ██████╔╝╚██████╔╝   ██║   ██║     ██║███████╗███████╗███████║"
-echo "╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝  ╚═════╝  ╚═════╝    ╚═╝   ╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝"
-echo "                              https://github.com/seeingangelz"
-echo ""
 echo "Installing programs..."
 echo "Already have yay installed? (y/n)"
 read answer
@@ -59,9 +49,6 @@ if [ -d "/sys/class/power_supply" ] && [ "$(ls -A /sys/class/power_supply)" ]; t
   case $answer in
     [Yy]*)
       echo "Installing dependencies..."
-      yay -S acpi acpilight
-      sudo chown $USER /sys/class/backlight/intel_backlight/brightness
-      sleep 1 && clear
       echo "Want to enable touchpad tap-to-click? (y/n)"
       read answer
       sleep 1 && clear
@@ -121,7 +108,7 @@ case $answer in
     ;;
   [Nn]*)
     echo "Installing..."
-    bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    yay -S zsh
     if [ -L $HOME/.config/zsh ]; then
     rm $HOME/.config/zsh
     mv $path/.config/zsh/.zshrc.pre-oh-my-zsh $path/.config/zsh/.zshrc
